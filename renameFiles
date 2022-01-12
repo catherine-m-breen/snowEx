@@ -12,14 +12,16 @@ from datetime import datetime
 ############
 camera = list(['E6A','E8A','E9B','E9C','E9D','E9E','E9G','TLSK20','W1B','W3A',
                'W6A','W8C',])
-print(day)
-folder = r'/Volumes/2018_day_sorted/'
+print(camera)
+folder = r'/Users/cmbreen/Documents/Mac2020/SnowEx/SnowEx2020_Cameras_rename/'
 
 ## create new folder for camera images
-for i in range(0, len(camera)): 
-    os.mkdir(folder+camera[i])
-    os.path.isdir(folder+camera[i])
+#for i in range(0, len(camera)): 
+#    os.mkdir(folder+camera[i])
+#    os.path.isdir(folder+camera[i])
 ############
+print('done')
+           
 
 
 ############
@@ -27,22 +29,28 @@ for i in range(0, len(camera)):
 
 ## where your photos are stored, the "r" notation indicates recursive (searches
 ## subdirectories
-src = r'C:/Users/cbreen/Documents/SnowEx2020_Cameras'
+src = r'/Users/cmbreen/Documents/Mac2020/SnowEx/SnowEx2020_Cameras'
 
 ## your destination for photos, either precreated or created using loop above 
-imageDest = r'/Volumes/SnowEx_renamed/'
+dest = r'/Users/cmbreen/Documents/Mac2020/SnowEx/SnowEx2020_Cameras_rename/'
 
 ## loop that walks through folders and subdirectories and calls function
 for path, subdirs, files in os.walk(src):
-    print(path)
-    print(subdirs)
+    #print(path)
+    ## pulls out the subdirectory (camerafolder for the images)
+    cameraID = (path.rsplit('/',maxsplit=1))
+    print(cameraID[1])
     for name in files:
-         if filename.endswith('.JPG'): 
-            print(dest+subdirs)
-            #shutil.copy2(filename, dest+subdirs))
-            #old_name=
-            #new_name=
-            #os.rename(filename,)
-           
-           
+        if name.endswith('.JPG'):
+            filename = os.path.join(path,name)
+            ## test to make sure the destination will put the image
+            ## in the right subfolder
+            print(dest+str(cameraID[1]))
+            shutil.copy2(filename, dest+cameraID[1])
+            new_file = "/Users/cmbreen/Documents/Mac2020/SnowEx/SnowEx2020_Cameras_rename/"+cameraID[1]+str('/')+name
+            print(new_file)
+            new_name = "/Users/cmbreen/Documents/Mac2020/SnowEx/SnowEx2020_Cameras_rename/"+cameraID[1]+str('/') + cameraID[1] + str('_')+name
+            print(new_name)
+            os.rename(new_file, new_name)
+
 print('done')
