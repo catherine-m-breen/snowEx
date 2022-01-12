@@ -1,0 +1,48 @@
+## Catherine M. Breen
+## January 12 2022
+
+## Rename 2020 SnowEx Timelapse Photos
+
+## load necessary packages
+import os
+import shutil
+from time import gmtime, strftime
+from datetime import datetime
+
+############
+camera = list(['E6A','E8A','E9B','E9C','E9D','E9E','E9G','TLSK20','W1B','W3A',
+               'W6A','W8C',])
+print(day)
+folder = r'/Volumes/2018_day_sorted/'
+
+## create new folder for camera images
+for i in range(0, len(camera)): 
+    os.mkdir(folder+camera[i])
+    os.path.isdir(folder+camera[i])
+############
+
+
+############
+### renaming images with the camera ID
+
+## where your photos are stored, the "r" notation indicates recursive (searches
+## subdirectories
+src = r'C:/Users/cbreen/Documents/SnowEx2020_Cameras'
+
+## your destination for photos, either precreated or created using loop above 
+imageDest = r'/Volumes/SnowEx_renamed/'
+
+## loop that walks through folders and subdirectories and calls function
+for path, subdirs, files in os.walk(src):
+    print(path)
+    print(subdirs)
+    for name in files:
+         if filename.endswith('.JPG'): 
+            print(dest+subdirs)
+            #shutil.copy2(filename, dest+subdirs))
+            #old_name=
+            #new_name=
+            #os.rename(filename,)
+           
+           
+print('done')
